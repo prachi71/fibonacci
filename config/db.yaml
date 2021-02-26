@@ -8,6 +8,6 @@ ddl:
   insert:
     INSERT INTO fibonacci(next,previous) values ($1,$2) RETURNING id;
   select:
-    SELECT id,previous FROM fibonacci order by id asc;
+    SELECT count(*) FROM fibonacci;
   selectByPk:
     SELECT id,previous,next FROM fibonacci where id = $1;

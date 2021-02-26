@@ -41,8 +41,16 @@ paths:
         "200":
           description: OK
           schema:
-            items:
-              type: string
-            type: array
+            type: string
       summary: Return a Fibonacci series upto the given count
+  /fzero/:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+      summary: Return Zero Fibonacci Series
 swagger: "2.0"

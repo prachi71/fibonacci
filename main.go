@@ -35,6 +35,7 @@ func main() {
 	v1 := r.Group("/api/v1")
 	{
 		v1.GET("/fseries/:count", apis.GetFibonacciSeries)
+		v1.GET("/fzero/", apis.GetAllFibonacciSeries)
 		v1.GET("/fnumber/:ordinal", apis.GetFibonacciNumberForOrdinal)
 	}
 

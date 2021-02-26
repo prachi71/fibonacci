@@ -8,7 +8,6 @@ import (
 	"github.com/stretchr/testify/assert"
 	"net/http"
 	"net/http/httptest"
-	"os"
 	"strings"
 	"testing"
 )
@@ -26,8 +25,10 @@ type apiTestCase struct {
 }
 
 func init() {
+	// IDE support
 	util.LoadEnvFromFileForTests()
-	os.Setenv("POSTGRES_HOST", "localhost")
+	daos.NewSqlDao("../config/db.yaml")
+
 }
 
 // Creates new router in testing mode
@@ -52,22 +53,19 @@ func runAPITests(t *testing.T, tests []apiTestCase) {
 		res := testAPI(router, test.method, test.urlToServe, test.urlToHit, test.function, test.body)
 		assert.Equal(t, test.status, res.Code, test.tag)
 		if http.StatusOK == res.Code {
+			// Hack to munge the data
 			s1 := strings.Split(res.Body.String(), ":")[0]
 			assert.Equal(t, test.expectedResult, s1, test.tag)
 		}
 	}
 }
 
-func init() {
-	//util.LoadEnvFromFileForTests()
-	daos.NewSqlDao("../config/db.yaml")
-}
-
 func TestGetFibonacciSeries(t *testing.T) {
 	runAPITests(t, []apiTestCase{
-		{"t1 - get a Fibonacci series", "GET", "/fseries/:count", "/fseries/10", "", GetFibonacciSeries, http.StatusOK, "", "\" [0 1 1 2 3 5 8 13 21 34] "},
+		{"t1 - get a Fibonacci series", "GET", "/fseries/:count", "/fseries/10", "", GetFibonacciSeries, http.StatusOK, "", "\" [0 1 1 2 3 5 8 13 21 34 55] "},
 		{"t2 - get a Invalid count", "GET", "/fseries/:count", "/fseries/-1", "", GetFibonacciSeries, http.StatusBadRequest, "", ""},
 		{"t1 - get a Fibonacci number", "GET", "/fnumber/:ordinal", "/fnumber/11", "", GetFibonacciNumberForOrdinal, http.StatusOK, "", "\" 89 "},
 		{"t1 - get a Fibonacci number with invalid ordinal", "GET", "/fnumber/:ordinal", "/fnumber/-1", "", GetFibonacciNumberForOrdinal, http.StatusBadRequest, "", ""},
+		{"t1 - get a Fibonacci Zero Count", "GET", "/fzero/", "/fzero/", "", GetAllFibonacciSeries, http.StatusOK, "", "\" 0 "},
 	})
 }

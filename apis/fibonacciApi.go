@@ -15,7 +15,7 @@ import (
 // @Summary Return a Fibonacci series upto the given count
 // @Produce json
 // @Param count path integer true "count"
-// @Success 200 {object} []string
+// @Success 200 {object} string
 // @Router /fseries/{count} [get]
 func GetFibonacciSeries(c *gin.Context) {
 	start := time.Now()
@@ -34,6 +34,25 @@ func GetFibonacciSeries(c *gin.Context) {
 
 	duration := time.Since(start)
 	log.Println("Processing GetFibonacciSeries request finished in : ", duration)
+}
+
+// GetFibonacciSeries godoc
+// @Summary Return Zero Fibonacci Series
+// @Produce json
+// @Success 200 {object} int
+// @Router /fzero/ [get]
+func GetAllFibonacciSeries(c *gin.Context) {
+	start := time.Now()
+	log.Println("Processing GetFibonacciSeries request")
+
+	s := services.NewFibonacciService(daos.NewFibonacciDao())
+
+	fcount := s.Count()
+	res := fmt.Sprintf(" %d : GetAllFibonacciSeries processed in %s", fcount, time.Since(start))
+	c.JSON(http.StatusOK, res)
+	duration := time.Since(start)
+
+	log.Println("Processing GetAllFibonacciSeries request finished in : ", duration)
 }
 
 // GetFibonacciSeries godoc

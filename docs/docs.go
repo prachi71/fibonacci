@@ -76,10 +76,23 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/fzero/": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Return Zero Fibonacci Series",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "integer"
                         }
                     }
                 }

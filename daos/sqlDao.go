@@ -107,3 +107,9 @@ func (sqlDao *SqlDao) GetByPk(pk int, tx *sql.Tx) models.Fibonacci {
 func (sqlDao *SqlDao) Delete() {
 
 }
+
+func (sqlDao *SqlDao) GetCount() int {
+	var count int
+	getConnection().QueryRow(crudConfig.Ddl.Select).Scan(&count)
+	return count
+}

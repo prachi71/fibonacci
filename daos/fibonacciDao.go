@@ -34,3 +34,8 @@ func (dao *FibonacciDao) Begin() (ctx util.TxContext) {
 func (dao *FibonacciDao) End(ctx util.TxContext) {
 	ctx.TX.Rollback()
 }
+
+func (dao *FibonacciDao) GetCount() (count int) {
+	sd := NewSqlDao("config/db.yaml")
+	return sd.GetCount()
+}

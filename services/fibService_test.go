@@ -23,6 +23,10 @@ func (mockService *MockService) End(ctx util.TxContext) {
 	id = 1
 }
 
+func (mockService *MockService) GetCount() (count int) {
+	return 0
+}
+
 func (mockService *MockService) Save(fibonacci models.Fibonacci, ctx util.TxContext) (pk int) {
 	fibonacci.Id = id
 	id++
@@ -76,6 +80,7 @@ func getFseriesUpto10() []string {
 	testFSeries = append(testFSeries, "13")
 	testFSeries = append(testFSeries, "21")
 	testFSeries = append(testFSeries, "34")
+	testFSeries = append(testFSeries, "55")
 	return testFSeries
 }
 
