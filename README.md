@@ -14,7 +14,30 @@ Bonus points:
 ### Rest Api
 
 _GIN_ : For rest services </br>
-Swagger : Api docs :
+
+## Usage
+
+1) make container </br>
+
+### Swagger details :Swagger : Api docs :
+
+browse to http://localhost:8080/swagger/index.html
+
+Select "Try it out"
+
+### Without Swagger UI in browser (change 14 accordingly)
+http://localhost:8080/api/v1/fnumber/14 
+
+http://localhost:8080/api/v1/fseries/14 
+
+http://localhost:8080/api/v1/fzero
+
+### With curl
+curl -X GET "http://localhost:8080/api/v1/fnumber/14" -H "accept: application/json"
+
+curl -X GET "http://localhost:8080/api/v1/fseries/11" -H "accept: application/json"
+
+curl -X GET "http://localhost:8080/api/v1/fzero/" -H "accept: application/json"
 
 ### Makefile : Key targets are in bold
 make help</br></br>
@@ -39,10 +62,7 @@ deps : Update/refresh dependencies from go.mod</br></br>
 docker-compose up --build </br></br>
 docker-compose -f docker-compose.yml stop
 
-### Swagger details
 
-1) make container </br>
-2) browse to http://localhost:8080/swagger/index.html
 
 ### Transient store
 
