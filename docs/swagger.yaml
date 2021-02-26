@@ -1,0 +1,48 @@
+basePath: /api/v1
+info:
+  contact:
+    email: contact@gmail.com
+    name: API Support
+  description: Swagger API for Golang Project Fibonacci.
+  license:
+    name: APACHE LICENSE, VERSION 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: http://swagger.io/terms/
+  title: Fibonacci API
+  version: "1.0"
+paths:
+  /fnumber/{ordinal}:
+    get:
+      parameters:
+      - description: ordinal
+        in: path
+        name: ordinal
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Return the Fibonacci number given an ordinal
+  /fseries/{count}:
+    get:
+      parameters:
+      - description: count
+        in: path
+        name: count
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              type: string
+            type: array
+      summary: Return a Fibonacci series upto the given count
+swagger: "2.0"

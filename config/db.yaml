@@ -1,0 +1,13 @@
+ddl:
+  create:
+    CREATE TABLE IF NOT EXISTS fibonacci (
+    id serial PRIMARY KEY ,
+    previous varchar(255),
+    next varchar(255)
+    );
+  insert:
+    INSERT INTO fibonacci(next,previous) values ($1,$2) RETURNING id;
+  select:
+    SELECT id,previous FROM fibonacci order by id asc;
+  selectByPk:
+    SELECT id,previous,next FROM fibonacci where id = $1;

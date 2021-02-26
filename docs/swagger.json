@@ -1,0 +1,73 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Swagger API for Golang Project Fibonacci.",
+        "title": "Fibonacci API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "email": "contact@gmail.com"
+        },
+        "license": {
+            "name": "APACHE LICENSE, VERSION 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0"
+        },
+        "version": "1.0"
+    },
+    "basePath": "/api/v1",
+    "paths": {
+        "/fnumber/{ordinal}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Return the Fibonacci number given an ordinal",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ordinal",
+                        "name": "ordinal",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/fseries/{count}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Return a Fibonacci series upto the given count",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "count",
+                        "name": "count",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
